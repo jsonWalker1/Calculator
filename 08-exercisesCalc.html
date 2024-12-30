@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="button">
+        
+        <div>
+            <input type="text" id="display" disabled placeholder="result">
+        </div>
+           <div class="container">
+                <p>
+
+                
+                <button onclick="calculation(1);" class="numButton">1</button>
+                    <button onclick="calculation(2)"class="numButton">2</button>
+                    <button onclick="calculation(3)"class="numButton">3</button>
+                
+                </p> 
+                
+                <p>
+                    <button onclick="calculation(4);" class="numButton">4</button>
+                    <button onclick="calculation(5)"class="numButton">5</button>
+                    <button onclick="calculation(6)"class="numButton">6</button>
+                    
+                </p>
+            <p>
+                    <button onclick="calculation(7);" class="numButton">7</button>
+                    <button onclick="calculation(8)"class="numButton">8</button>
+                    <button onclick="calculation(9)"class="numButton">9</button>
+                
+                    
+            </p>
+            <p class="operators">
+                <button onclick="calculation('+')"class="numButton">+</button>
+                <button onclick="calculation('-')"class="numButton">-</button>
+                <button onclick="calculation('0')"class="numButton">0</button>
+                
+                
+            </p>
+
+            <p>
+                <button onclick="calculation('*')"class="numButton">*</button>
+                <button onclick="calculation('/')"class="numButton">/</button>
+                <button onclick="calResult('=')"class="numButton">=</button>
+                
+            </p>
+            <p><button onclick="reset()" class="numButton">clear</button></p>
+            </div>
+        
+    
+    <script>
+        let expression = JSON.parse(localStorage.getItem('expression'))||''
+        let result = JSON.parse(localStorage.getItem('result'))||''
+        document.getElementById('display').value = expression;
+        document.getElementById('display').value = result;
+            
+            function calculation(input) {
+                expression += input;
+                document.getElementById('display').value = expression;
+                console.log(expression);
+                localStorage.setItem('expression', JSON.stringify(expression));
+                
+            }
+            
+            
+            function calResult (){
+                let result = eval(expression)
+                document.getElementById('display').value = result;
+                console.log(result);
+                expression = '';
+                localStorage.setItem('expression', JSON.stringify(expression));
+                localStorage.setItem('result', JSON.stringify(result));
+            }
+
+            
+            function reset (){
+                result = '';
+                expression = '';
+                document.getElementById('display').value = result;
+                console.log(result);
+                localStorage.setItem('expression', JSON.stringify(expression));
+                localStorage.setItem('result', JSON.stringify(result));
+            }
+    </script>
+
+
+
+
+
+
+    
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            background-color: #87D0EA;
+        }
+        #display{
+            background-color: #B7CFEA;
+            display: block;
+            width: 250px;
+            padding: 30px 0;
+            font-size: 2.0rem;
+            margin: 0 auto;
+            box-shadow: 2px 2px 1px;
+        }
+        #button{
+            display: block;
+            justify-content: center;
+            padding: 40px;
+            margin: 20px;
+            font-size: 1.2rem;
+            user-select: none;
+            background-color: #87D0EA;
+        }
+        .container{
+            text-align: center;
+        }
+        .numButton{
+            background-color: #B7CFEA;
+            margin: 5px;
+            padding: 30px;
+            border-radius: 20%;
+            box-shadow: 2px 2px 1px;
+            transition: 0.4s ease;
+                
+        }
+        .numButton:hover{
+
+            transform: scale(1.1);
+            background-color: #6CA0EA;
+            font-size: 15px;
+
+
+        }
+       
+
+    </style>
+    
+</div>
+</body> m
+</html>
